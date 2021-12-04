@@ -5,7 +5,7 @@ from ckeditor.fields import RichTextField
 class Article(models.Model):
 	author=models.ForeignKey("auth.User",on_delete=models.CASCADE,verbose_name="Yazar Adı")
 	title=models.CharField(max_length=50,verbose_name="Konu")
-	content=RichTextField(max_length=1000,verbose_name="İçerik (255) Karakter")
+	content=RichTextField(verbose_name="İçerik (255) Karakter")
 	created_date=models.DateTimeField(auto_now_add=True,verbose_name="Oluşturma Tarihi")
 	article_image = models.FileField(blank=True, null=True, verbose_name="Resim Ekle")
 	def __str__(self):
@@ -32,8 +32,4 @@ class Comment(models.Model):
 		ordering = ['-comment_date']
 
 
-class pro(models.Model):
-	article = models.ForeignKey(Comment, on_delete=models.CASCADE, verbose_name="Makale", related_name="comments")
-	pro_name = models.CharField(max_length=50, verbose_name="İsim")
-	pro_lasname = models.CharField(max_length=200, verbose_name="Yorum")
 
